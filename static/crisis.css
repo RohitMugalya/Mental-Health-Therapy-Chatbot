@@ -1,0 +1,45 @@
+/* Glitter effect */
+@keyframes glitter {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #FF69B4, #FF1493, #4B0082, #8A2BE2, #FF69B4);
+    background-size: 400% 400%;
+    z-index: -1;
+    filter: blur(5px);
+    animation: glitter 20s linear infinite;
+    opacity: 0.3;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 15px;
+}
+
+body:hover::before {
+    opacity: 0.5;
+}
+
+body {
+    padding-left: 200px;
+    padding-top: 35px;
+}
+
+.board {
+    background-color: black;
+    color: aliceblue;
+    width: 500px;
+    padding: 10px;
+    border-radius: 10%;
+    border: 1px solid red;
+}
+
+.board-text {
+    text-align: center;
+}

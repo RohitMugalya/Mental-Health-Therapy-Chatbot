@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Mental Health Companion</title>
+        <link rel="stylesheet" href="../static/index.css">
+    </head>
+    <body>
+        <div class="outer">
+            <div class="chat-log">
+                <table>
+                    <thead>
+                        <td>Role</td>
+                        <td>Message</td>
+                        <td>Sentiment Status</td>
+                    </thead>
+                    <tbody id="chat-body">
+                        {% for chat in chats %}
+                        <tr>
+                            <td id="role">{{ chat.role | safe }}</td>
+                            <td>{{ chat.message | safe }}</td>
+                            {% if loop.last %}
+                            <td><img src="data:image/png;base64,{{ piechart_img }}" alt="Updated Pie Chart" style="max-width:100%; height:auto;"></td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div id="loading" class="loading">
+                    <div class="loader"></div>
+                    <p>Please wait while we process your request...</p>
+                </div>
+            </div>
+
+            <div class="chat-box">
+                <form action="/" onsubmit="showLoading()">
+
+                    <input
+                    autocomplete="off"
+                    autofocus
+                    name="prompt" 
+                    placeholder="What's on your mind today?"
+                    required
+                    type="text"
+                    >
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+
+        </div>
+        <script src="../static/index.js"></script>
+    </body>
+</html>

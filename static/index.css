@@ -1,0 +1,285 @@
+body {
+    background-color: #1E1E1E;
+    color: aliceblue;
+}
+
+a {
+    color: aliceblue;
+}
+
+#role {
+    text-transform: capitalize;
+}
+
+
+
+/* FROM HERE STARTS TABLE CSS */
+.chat-log {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #2C2C2C;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+    font-family: 'Arial', sans-serif;
+}
+
+.chat-log table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.chat-log thead {
+    background-color: #FF69B4;
+    color: #FFFFFF;
+}
+
+.chat-log th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.chat-log td {
+    padding: 15px;
+    font-size: 14px;
+    border-radius: 10px;
+}
+
+/* Style for tables inside td tags */
+.chat-log td table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.chat-log td table, .chat-log td table th, .chat-log td table td {
+    border: 1px solid aliceblue;
+}
+
+.chat-log td table th, .chat-log td table td {
+    padding: 8px;
+    text-align: left;
+    background-color: transparent;
+}
+
+.chat-log tbody tr {
+    transition: transform 0.2s ease;
+}
+
+.chat-log tbody tr:hover {
+    transform: scale(1.02);
+}
+
+/* User messages */
+.chat-log tbody tr:nth-child(odd) td {
+    background-color: #3A3A3A;
+    color: #FFFFFF;
+}
+
+.chat-log tbody tr:nth-child(odd) td:first-child {
+    background-color: #FF69B4;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+/* Bot messages */
+.chat-log tbody tr:nth-child(even) td {
+    background-color: #2C2C2C;
+    color: #E0E0E0;
+}
+
+.chat-log tbody tr:nth-child(even) td:first-child {
+    background-color: #8A2BE2;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+.chat-log td:first-child {
+    width: 100px;
+    text-align: center;
+}
+
+/* Glitter effect */
+@keyframes glitter {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+.chat-log::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #FF69B4, #FF1493, #4B0082, #8A2BE2, #FF69B4);
+    background-size: 400% 400%;
+    z-index: -1;
+    filter: blur(5px);
+    animation: glitter 20s linear infinite;
+    opacity: 0.3;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 15px;
+}
+
+.chat-log:hover::before {
+    opacity: 0.5;
+}
+
+/* Heart icon for bot messages */
+.chat-log tbody tr:nth-child(even) td:first-child::before {
+    content: '❤️';
+    margin-right: 5px;
+    font-size: 18px;
+}
+
+/* Accessibility enhancement */
+@media (prefers-reduced-motion: reduce) {
+    .chat-log tbody tr, .chat-log::before {
+        transition: none;
+        animation: none;
+    }
+}
+
+/* TABLE CSS ENDS HERE */
+
+/* Chat box styles */
+.chat-box {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #2C2C2C;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+    font-family: 'Arial', sans-serif;
+    box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+.chat-box form {
+    display: flex;
+    gap: 10px;
+}
+
+.chat-box input[type="text"] {
+    flex-grow: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    background-color: #3A3A3A;
+    color: #FFFFFF;
+    font-size: 14px;
+    outline: none;
+    transition: box-shadow 0.3s ease;
+}
+
+.chat-box input[type="text"]::placeholder {
+    color: #A0A0A0;
+}
+
+.chat-box input[type="text"]:focus {
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+}
+
+.chat-box button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(45deg, #FF69B4, #8A2BE2);
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.chat-box button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.7);
+}
+
+.chat-box button:active {
+    transform: scale(0.95);
+}
+
+/* Soothing animation for mental health focus */
+@keyframes gentle-pulse {
+    0% { box-shadow: 0 0 10px rgba(255, 105, 180, 0.3); }
+    50% { box-shadow: 0 0 20px rgba(255, 105, 180, 0.5); }
+    100% { box-shadow: 0 0 10px rgba(255, 105, 180, 0.3); }
+}
+
+.chat-box {
+    animation: gentle-pulse 4s infinite;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .chat-box, .chat-box button {
+        animation: none;
+        transition: none;
+    }
+}
+
+/* chat box styles ENDS HERE */
+
+/* Hover effect for input field */
+.chat-box input[type="text"]:hover {
+    border: 2px solid aliceblue; /* Solid aliceblue border */
+    background-color: #2C2C2C;
+    box-shadow: 0 0 8px rgba(240, 248, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+/* Ensure smooth transition for non-hover state */
+.chat-box input[type="text"] {
+    transition: all 0.3s ease;
+    border: 2px solid transparent; /* Transparent border by default */
+}
+
+/* Hover effect for send button */
+.chat-box button:hover {
+    color: #1E1E1E; /* Dark font color on hover */
+    border: 2px solid aliceblue; /* Solid aliceblue border */
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.7);
+}
+
+/* Ensure smooth transition for non-hover state of button */
+.chat-box button {
+    transition: all 0.3s ease;
+    border: 2px solid transparent; /* Transparent border by default */
+}
+/* END OF HOVER EFFECT FOR SEND BUTTON */
+
+
+/* LOADING EFFECT */
+.loading {
+    display: none;
+    font-size: 1.2em;
+    color: aliceblue;
+    text-align: center;
+    margin: 20px 0;
+}
+.loader {
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/* LOADING EFFECT ENDS HERE */
