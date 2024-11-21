@@ -1,5 +1,4 @@
 Flask==3.0.3
-tensorflow==2.17.0
 tf-keras==2.17.0
 transformers==4.45.1
 matplotlib==3.8.3
