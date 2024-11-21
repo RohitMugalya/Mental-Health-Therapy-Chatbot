@@ -1,13 +1,14 @@
-from transformers import pipeline
-from flask import Flask, render_template, request
-import matplotlib.pyplot as plt
-
-import bot
-import markdown as md
 import re
 import io
 import statistics
 import base64
+
+from transformers import pipeline
+from flask import Flask, render_template, request
+import matplotlib.pyplot as plt
+import markdown as md
+
+import bot
 
 classifier = pipeline("sentiment-analysis")
 app = Flask(__name__)

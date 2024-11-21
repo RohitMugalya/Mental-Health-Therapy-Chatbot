@@ -1,8 +1,10 @@
 from google import generativeai as genai
 
-API_KEY = "AIzaSyAnMtn5b8CE9OgGpMpW13zd8v4H1pnuBxA"
+API_KEY = "YOUR_API_KEY"
 
-SYSTEM_PROMPT = open("system_prompt.txt").read()
+with open("system_prompt.txt", encoding="utf-8") as f:
+    SYSTEM_PROMPT = f.read()
+
 
 genai.configure(api_key=API_KEY)
 model = genai.GenerativeModel("gemini-1.5-flash")
