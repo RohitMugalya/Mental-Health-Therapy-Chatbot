@@ -1,6 +1,6 @@
 from google import generativeai as genai
 
-API_KEY = "YOUR_API_KEY"
+API_KEY = "AIzaSyAnMtn5b8CE9OgGpMpW13zd8v4H1pnuBxA"
 
 with open("system_prompt.txt", encoding="utf-8") as f:
     SYSTEM_PROMPT = f.read()
