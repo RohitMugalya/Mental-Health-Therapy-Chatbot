@@ -20,7 +20,11 @@
                             <td id="role">{{ chat.role | safe }}</td>
                             <td>{{ chat.message | safe }}</td>
                             {% if loop.last %}
-                            <td><img src="data:image/png;base64,{{ piechart_img }}" alt="Updated Pie Chart" style="max-width:100%; height:auto;"></td>
+                                <td>
+                                    {% if pie_chart is not none %}
+                                        <img src="{{ pie_chart }}" alt="Updated Pie Chart" style="max-width:100%; height:auto;">
+                                    {% endif %}
+                                </td>
                             {% endif %}
                         </tr>
                         {% endfor %}

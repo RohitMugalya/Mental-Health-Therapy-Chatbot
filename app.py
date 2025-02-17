@@ -1,7 +1,7 @@
+import os
+from pathlib import Path
 import re
-import io
 import statistics
-import base64
 
 from transformers import pipeline
 from flask import Flask, render_template, request
@@ -10,6 +10,7 @@ import markdown as md
 
 import bot
 
+PIE_CHART = Path(r"./static/pie_chart.png")
 classifier = pipeline("sentiment-analysis")
 app = Flask(__name__)
 
@@ -47,7 +48,7 @@ def emotion_values():
 
 @app.route("/")
 def index():
-    piechart_img = None
+    pie_chart = PIE_CHART if PIE_CHART.exists() else None
     if "prompt" in request.args:
         query = request.args["prompt"]
         if query not in queries:
@@ -56,18 +57,16 @@ def index():
             if sizes[0] >= CRISIS_THRESHOLD:
                 return render_template("crisis.html")
 
+            pie_chart = PIE_CHART
             plt.switch_backend('Agg')
             plt.figure(figsize=(6, 6))
             plt.pie(sizes, colors=["red", "blue"],
                     autopct='%1.1f%%', shadow=True, startangle=140)
             plt.axis('equal')
 
-            buf = io.BytesIO()
-            plt.savefig(buf, format='png', bbox_inches='tight')
-            buf.seek(0)
+            plt.savefig(pie_chart, bbox_inches='tight')
             plt.close()
 
-            piechart_img = base64.b64encode(buf.getvalue()).decode('utf8')
             response = bot.respond_to(query)
             response = md.markdown(response,
                                    extensions=['extra', 'codehilite', 'fenced_code', 'tables', 'nl2br', 'sane_lists',
@@ -76,8 +75,10 @@ def index():
             dialogues.append({"role": "bot", "message": response})
             queries.add(query)
 
-    return render_template("index.html", chats=dialogues, piechart_img=piechart_img)
+    return render_template("index.html", chats=dialogues, pie_chart=pie_chart)
 
 
 if __name__ == "__main__":
     app.run(debug=True)
+    if PIE_CHART.exists():
+        os.remove(PIE_CHART)
